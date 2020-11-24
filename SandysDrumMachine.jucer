@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="lAFDu4" name="SandysDrumMachine" projectType="audioplug"
+              useAppConfig="0" displaySplashScreen="1" jucerFormatVersion="1"
+              pluginFormats="buildVST3" pluginCharacteristicsValue="pluginIsMidiEffectPlugin,pluginIsSynth,pluginWantsMidiIn">
+  <MAINGROUP id="r6y3Lw" name="SandysDrumMachine">
+    <GROUP id="{A1CF6AAE-A1C1-6088-9448-8ED31B77766C}" name="Source">
+      <FILE id="ZWt7L1" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="bGyJEz" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="hOqrBQ" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="hYsdnn" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
+  <EXPORTFORMATS>
+    <VS2019 targetFolder="Builds/VisualStudio2019">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="SandysDrumMachine"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="SandysDrumMachine"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../../../../../../../../Program Files/JUCE_old/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../../../../../../Program Files/JUCE_old/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../../../../../../Program Files/JUCE_old/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../../../../../../../Program Files/JUCE_old/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../../../../../../Program Files/JUCE_old/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../../../../../../Program Files/JUCE_old/modules"/>
+        <MODULEPATH id="juce_core" path="../../../../../../../../Program Files/JUCE_old/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../../../../../../Program Files/JUCE_old/modules"/>
+        <MODULEPATH id="juce_events" path="../../../../../../../../Program Files/JUCE_old/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../../../../../../Program Files/JUCE_old/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../../../../../../Program Files/JUCE_old/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../../../../../../Program Files/JUCE_old/modules"/>
+      </MODULEPATHS>
+    </VS2019>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+  <LIVE_SETTINGS>
+    <WINDOWS/>
+  </LIVE_SETTINGS>
+</JUCERPROJECT>
