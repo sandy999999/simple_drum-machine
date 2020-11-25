@@ -23,19 +23,8 @@ SandysDrumMachineAudioProcessor::SandysDrumMachineAudioProcessor()
          std::make_unique<AudioParameterFloat>("Sound Choice", "Sound Choice", 0.0f, 4.0f, 0.0f)})
 #endif
 {
-
-    samplesFolder = File::getSpecialLocation(File::userDesktopDirectory).getChildFile("DrumMachineSounds");
-    instruments = { "Kick", "Snare", "HiHat", "Conga", "Tom" };
-
-
-    for (int i = 0; i < numVoices; i++) {
-        sampler.addVoice(new SamplerVoice());
-    }
-
-    // set up our AudioFormatManager class as detailed in the API docs
-	// we can now use WAV and AIFF files!
-    audioFormatManager.registerBasicFormats();
-    loadSample();
+    parameters.addParameterListener("Sound Choice", this);
+    samplerSetup();
 }
 
 SandysDrumMachineAudioProcessor::~SandysDrumMachineAudioProcessor()
@@ -111,7 +100,6 @@ void SandysDrumMachineAudioProcessor::prepareToPlay (double sampleRate, int samp
     midiCollector.reset(sampleRate);
 
     sampler.setCurrentPlaybackSampleRate(sampleRate);
-    updateSoundChoice();
 }
 
 void SandysDrumMachineAudioProcessor::releaseResources()
@@ -147,16 +135,16 @@ bool SandysDrumMachineAudioProcessor::isBusesLayoutSupported (const BusesLayout&
 void SandysDrumMachineAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
     ScopedNoDenormals noDenormals;
-    auto numSamples = buffer.getNumSamples();
 
-    midiCollector.removeNextBlockOfMessages(midiMessages, numSamples);
+    auto totalNumInputChannels = getTotalNumInputChannels();
+    auto totalNumOutputChannels = getTotalNumOutputChannels();
 	
-    keyboardState.processNextMidiBuffer(midiMessages, 0, numSamples, true);
+    auto numSamples = buffer.getNumSamples();
 	
-    buffer.clear();
-	
+    for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
+        buffer.clear(i, 0, numSamples);
+
     sampler.renderNextBlock(buffer, midiMessages, 0, numSamples);
-    updateSoundChoice();
 }
 
 //==============================================================================
@@ -187,9 +175,20 @@ void SandysDrumMachineAudioProcessor::setStateInformation (const void* data, int
             parameters.replaceState(juce::ValueTree::fromXml(*xmlState));
 }
 
-
-void SandysDrumMachineAudioProcessor::updateSoundChoice()
+void SandysDrumMachineAudioProcessor::samplerSetup()
 {
+    samplesFolder = File::getSpecialLocation(File::userDesktopDirectory).getChildFile("DrumMachineSounds");
+    instruments = { "kick", "snare", "hihat", "conga", "tom" };
+
+
+    for (int i = 0; i < numVoices; i++) {
+        sampler.addVoice(new SamplerVoice());
+    }
+
+    // set up our AudioFormatManager class as detailed in the API docs
+    // we can now use WAV and AIFF files!
+    audioFormatManager.registerBasicFormats();
+    loadSample();
 }
 
 void SandysDrumMachineAudioProcessor::loadSample()
@@ -201,29 +200,50 @@ void SandysDrumMachineAudioProcessor::loadSample()
             sampler.removeSound(i);
         }
     }
-	
+
     auto soundChoice = parameters.getRawParameterValue("Sound Choice")->load();
 
-    if (soundChoice == 0.0f)
-    {
-        addSamplerSound("kick.wav");
-    }
-    if (soundChoice == 1.0f)
-    {
-        addSamplerSound("snare.wav");
-    }
-    if (soundChoice == 2.0f)
-    {
-        addSamplerSound("hihat.wav");
-    }
-    if (soundChoice == 3.0f)
-    {
-        addSamplerSound("conga.wav");
-    }
-    if (soundChoice == 4.0f)
-    {
-        addSamplerSound("tom.wav");
-    }
+
+        if (soundChoice == 0.0f)
+        {
+            for (int i = 0; i < sampler.getNumSounds(); i++)
+            {
+                sampler.removeSound(i);
+            }
+            addSamplerSound(instruments[0] + ".wav");
+        }
+        if (soundChoice == 1.0f)
+        {
+            for (int i = 0; i < sampler.getNumSounds(); i++)
+            {
+                sampler.removeSound(i);
+            }
+            addSamplerSound(instruments[1] + ".wav");
+        }
+        if (soundChoice == 2.0f)
+        {
+            for (int i = 0; i < sampler.getNumSounds(); i++)
+            {
+                sampler.removeSound(i);
+            }
+            addSamplerSound(instruments[2] + ".wav");
+        }
+        if (soundChoice == 3.0f)
+        {
+            for (int i = 0; i < sampler.getNumSounds(); i++)
+            {
+                sampler.removeSound(i);
+            }
+            addSamplerSound(instruments[3] + ".wav");
+        }
+        if (soundChoice == 4.0f)
+        {
+            for (int i = 0; i < sampler.getNumSounds(); i++)
+            {
+                sampler.removeSound(i);
+            }
+            addSamplerSound(instruments[4] + ".wav");
+        }
 }
 
 void SandysDrumMachineAudioProcessor::addSamplerSound(String instrument)
@@ -238,8 +258,45 @@ void SandysDrumMachineAudioProcessor::addSamplerSound(String instrument)
 
     sampler.addSound(new SamplerSound(instrument, *fileReader, allNotes, 60, 0, 10, 10.0));
 
+	/*
     fileReader = nullptr;
     delete file;
+    */
+}
+
+void SandysDrumMachineAudioProcessor::parameterChanged(const String& parameterID, float newValue)
+{
+    if (sampler.getNumSounds() != 0)
+    {
+        for (int i = 0; i < sampler.getNumSounds(); i++)
+        {
+            sampler.removeSound(i);
+        }
+    }
+
+    DBG(newValue);
+    auto soundChoice = newValue;
+
+    if (soundChoice == 0.0f)
+    {
+        addSamplerSound(instruments[0] + ".wav");
+    }
+    if (soundChoice == 1.0f)
+    {
+        addSamplerSound(instruments[1] + ".wav");
+    }
+    if (soundChoice == 2.0f)
+    {
+        addSamplerSound(instruments[2] + ".wav");
+    }
+    if (soundChoice == 3.0f)
+    {
+        addSamplerSound(instruments[3] + ".wav");
+    }
+    if (soundChoice == 4.0f)
+    {
+        addSamplerSound(instruments[4] + ".wav");
+    }
 }
 
 

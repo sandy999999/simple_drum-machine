@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="lAFDu4" name="SandysDrumMachine" projectType="audioplug"
               useAppConfig="0" displaySplashScreen="1" jucerFormatVersion="1"
-              pluginFormats="buildVST3" pluginCharacteristicsValue="pluginIsMidiEffectPlugin,pluginIsSynth,pluginWantsMidiIn">
+              pluginFormats="buildVST3" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn">
   <MAINGROUP id="r6y3Lw" name="SandysDrumMachine">
     <GROUP id="{A1CF6AAE-A1C1-6088-9448-8ED31B77766C}" name="Source">
       <FILE id="ZWt7L1" name="PluginProcessor.cpp" compile="1" resource="0"

@@ -13,7 +13,7 @@
 //==============================================================================
 /**
 */
-class SandysDrumMachineAudioProcessor  : public juce::AudioProcessor
+class SandysDrumMachineAudioProcessor  : public juce::AudioProcessor, AudioProcessorValueTreeState::Listener
 {
 public:
     //==============================================================================
@@ -53,15 +53,13 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
-    void updateSoundChoice();
-
+    void samplerSetup();
     void addSamplerSound(String instrument);
-
     void loadSample();
-
-    typedef enum Sounds { KICK = 0, SNARE, CLAP, TOM, CLHAT, PERC, OPHAT, CRASH, RIDE }Sounds_t;
+    void parameterChanged(const String& parameterID, float newValue) override;
 
     AudioProcessorValueTreeState parameters;
+
 
 private:
 	
@@ -75,7 +73,6 @@ private:
 
     AudioFormatManager audioFormatManager;
 
-    MidiKeyboardState keyboardState;
     MidiMessageCollector midiCollector;
 
     //==============================================================================
