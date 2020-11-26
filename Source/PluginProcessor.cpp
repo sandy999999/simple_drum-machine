@@ -177,7 +177,7 @@ void SandysDrumMachineAudioProcessor::setStateInformation (const void* data, int
 
 void SandysDrumMachineAudioProcessor::samplerSetup()
 {
-    samplesFolder = File::getSpecialLocation(File::userDesktopDirectory).getChildFile("DrumMachineSounds");
+    samplesFolder = File::getSpecialLocation(File::currentApplicationFile).getChildFile("DrumMachineSounds");
     instruments = { "kick", "snare", "hihat", "conga", "tom" };
 
 
