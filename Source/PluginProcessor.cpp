@@ -177,22 +177,10 @@ void SandysDrumMachineAudioProcessor::setStateInformation (const void* data, int
 
 void SandysDrumMachineAudioProcessor::samplerSetup()
 {
-    samplesFolder = File::getSpecialLocation(File::currentApplicationFile).getChildFile("DrumMachineSounds");
-    instruments = { "kick", "snare", "hihat", "conga", "tom" };
-
-
     for (int i = 0; i < numVoices; i++) {
         sampler.addVoice(new SamplerVoice());
     }
 
-    // set up our AudioFormatManager class as detailed in the API docs
-    // we can now use WAV and AIFF files!
-    audioFormatManager.registerBasicFormats();
-    loadSample();
-}
-
-void SandysDrumMachineAudioProcessor::loadSample()
-{
     if (sampler.getNumSounds() != 0)
     {
         for (int i = 0; i < sampler.getNumSounds(); i++)
@@ -200,28 +188,9 @@ void SandysDrumMachineAudioProcessor::loadSample()
             sampler.removeSound(i);
         }
     }
+	
     addSamplerSound(instruments[0], BinaryData::kick_wav, BinaryData::kick_wavSize);
 }
-
-/*
-void SandysDrumMachineAudioProcessor::addSamplerSound(String instrument)
-{	
-    File* file = new File(samplesFolder.getChildFile(instrument));
-
-    ScopedPointer<AudioFormatReader> fileReader(audioFormatManager.createReaderFor(*file));
-
-	// allow our sound to be played on all notes
-    BigInteger allNotes;
-    allNotes.setRange(0, 128, true);
-
-    sampler.addSound(new SamplerSound(instrument, *fileReader, allNotes, 60, 0, 10, 10.0));
-
-	
-    fileReader = nullptr;
-    delete file;
-    
-}
-*/
 
 void SandysDrumMachineAudioProcessor::addSamplerSound(String instrument, const void* data, size_t sizeBytes)
 {
@@ -253,7 +222,6 @@ void SandysDrumMachineAudioProcessor::parameterChanged(const String& parameterID
         }
     }
 
-    DBG(newValue);
     auto soundChoice = newValue;
 
     if (soundChoice == 0.0f)

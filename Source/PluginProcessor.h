@@ -55,20 +55,16 @@ public:
 
     void samplerSetup();
     void addSamplerSound(String instrument, const void* data, size_t sizeBytes);
-    void loadSample();
     void parameterChanged(const String& parameterID, float newValue) override;
 
     AudioProcessorValueTreeState parameters;
-
 
 private:
 	
     Synthesiser sampler;
 
-    File samplesFolder;
-    StringArray instruments;
+    StringArray instruments = { "kick", "snare", "hihat", "conga", "tom" };
 
-	//one voice for each rhythm generator
     const int numVoices = { 4 };
 
     AudioFormatManager audioFormatManager;
