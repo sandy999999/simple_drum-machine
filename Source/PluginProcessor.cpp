@@ -200,52 +200,10 @@ void SandysDrumMachineAudioProcessor::loadSample()
             sampler.removeSound(i);
         }
     }
-
-    auto soundChoice = parameters.getRawParameterValue("Sound Choice")->load();
-
-
-        if (soundChoice == 0.0f)
-        {
-            for (int i = 0; i < sampler.getNumSounds(); i++)
-            {
-                sampler.removeSound(i);
-            }
-            addSamplerSound(instruments[0] + ".wav");
-        }
-        if (soundChoice == 1.0f)
-        {
-            for (int i = 0; i < sampler.getNumSounds(); i++)
-            {
-                sampler.removeSound(i);
-            }
-            addSamplerSound(instruments[1] + ".wav");
-        }
-        if (soundChoice == 2.0f)
-        {
-            for (int i = 0; i < sampler.getNumSounds(); i++)
-            {
-                sampler.removeSound(i);
-            }
-            addSamplerSound(instruments[2] + ".wav");
-        }
-        if (soundChoice == 3.0f)
-        {
-            for (int i = 0; i < sampler.getNumSounds(); i++)
-            {
-                sampler.removeSound(i);
-            }
-            addSamplerSound(instruments[3] + ".wav");
-        }
-        if (soundChoice == 4.0f)
-        {
-            for (int i = 0; i < sampler.getNumSounds(); i++)
-            {
-                sampler.removeSound(i);
-            }
-            addSamplerSound(instruments[4] + ".wav");
-        }
+    addSamplerSound(instruments[0], BinaryData::kick_wav, BinaryData::kick_wavSize);
 }
 
+/*
 void SandysDrumMachineAudioProcessor::addSamplerSound(String instrument)
 {	
     File* file = new File(samplesFolder.getChildFile(instrument));
@@ -258,10 +216,31 @@ void SandysDrumMachineAudioProcessor::addSamplerSound(String instrument)
 
     sampler.addSound(new SamplerSound(instrument, *fileReader, allNotes, 60, 0, 10, 10.0));
 
-	/*
+	
     fileReader = nullptr;
     delete file;
-    */
+    
+}
+*/
+
+void SandysDrumMachineAudioProcessor::addSamplerSound(String instrument, const void* data, size_t sizeBytes)
+{
+    AudioSampleBuffer buffer;
+    WavAudioFormat wavFormat;
+	
+    std::unique_ptr<AudioFormatReader> reader(wavFormat.createReaderFor(new MemoryInputStream(data, sizeBytes, false), true));
+    if (reader.get() != nullptr)
+    {
+        buffer.setSize(reader->numChannels, reader->lengthInSamples);
+        reader->read(&buffer, 0, reader->lengthInSamples, 0, true, true);
+    }
+    // reader is automatically deleted by using uique_ptr
+
+    // allow our sound to be played on all notes
+    BigInteger allNotes;
+    allNotes.setRange(0, 128, true);
+	
+    sampler.addSound(new SamplerSound(instrument, *reader, allNotes, 60, 0, 10, 10.0));
 }
 
 void SandysDrumMachineAudioProcessor::parameterChanged(const String& parameterID, float newValue)
@@ -279,23 +258,23 @@ void SandysDrumMachineAudioProcessor::parameterChanged(const String& parameterID
 
     if (soundChoice == 0.0f)
     {
-        addSamplerSound(instruments[0] + ".wav");
+        addSamplerSound(instruments[0], BinaryData::kick_wav, BinaryData::kick_wavSize);
     }
     if (soundChoice == 1.0f)
     {
-        addSamplerSound(instruments[1] + ".wav");
+        addSamplerSound(instruments[1], BinaryData::snare_wav, BinaryData::snare_wavSize);
     }
     if (soundChoice == 2.0f)
     {
-        addSamplerSound(instruments[2] + ".wav");
+        addSamplerSound(instruments[2], BinaryData::hihat_wav, BinaryData::hihat_wavSize);
     }
     if (soundChoice == 3.0f)
     {
-        addSamplerSound(instruments[3] + ".wav");
+        addSamplerSound(instruments[3], BinaryData::conga_wav, BinaryData::conga_wavSize);
     }
     if (soundChoice == 4.0f)
     {
-        addSamplerSound(instruments[4] + ".wav");
+        addSamplerSound(instruments[4], BinaryData::tom_wav, BinaryData::tom_wavSize);
     }
 }
 

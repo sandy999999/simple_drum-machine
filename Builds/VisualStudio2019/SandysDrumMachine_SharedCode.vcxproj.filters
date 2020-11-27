@@ -2,6 +2,9 @@
 
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="SandysDrumMachine\Source\DrumMachineSounds">
+      <UniqueIdentifier>{57E149DC-1FB1-7D7A-5000-656F6026CB66}</UniqueIdentifier>
+    </Filter>
     <Filter Include="SandysDrumMachine\Source">
       <UniqueIdentifier>{F956C423-847F-EC0F-79A0-38D18C00B12F}</UniqueIdentifier>
     </Filter>
@@ -2422,6 +2425,9 @@
     <ClCompile Include="..\..\..\..\..\..\..\..\..\..\Program Files\JUCE_old\modules\juce_gui_extra\juce_gui_extra.mm">
       <Filter>JUCE Modules\juce_gui_extra</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_basics.cpp">
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
@@ -4662,6 +4668,9 @@
     <ClInclude Include="..\..\..\..\..\..\..\..\..\..\Program Files\JUCE_old\modules\juce_gui_extra\juce_gui_extra.h">
       <Filter>JUCE Modules\juce_gui_extra</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\JuceLibraryCode\BinaryData.h">
+      <Filter>JUCE Library Code</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h">
       <Filter>JUCE Library Code</Filter>
     </ClInclude>
@@ -4670,6 +4679,21 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\..\..\..\..\Desktop\DrumMachineSounds\conga.wav">
+      <Filter>SandysDrumMachine\Source\DrumMachineSounds</Filter>
+    </None>
+    <None Include="..\..\..\..\..\..\..\..\Desktop\DrumMachineSounds\hihat.wav">
+      <Filter>SandysDrumMachine\Source\DrumMachineSounds</Filter>
+    </None>
+    <None Include="..\..\..\..\..\..\..\..\Desktop\DrumMachineSounds\kick.wav">
+      <Filter>SandysDrumMachine\Source\DrumMachineSounds</Filter>
+    </None>
+    <None Include="..\..\..\..\..\..\..\..\Desktop\DrumMachineSounds\snare.wav">
+      <Filter>SandysDrumMachine\Source\DrumMachineSounds</Filter>
+    </None>
+    <None Include="..\..\..\..\..\..\..\..\Desktop\DrumMachineSounds\tom.wav">
+      <Filter>SandysDrumMachine\Source\DrumMachineSounds</Filter>
+    </None>
     <None Include="..\..\..\..\..\..\..\..\..\..\Program Files\JUCE_old\modules\juce_audio_devices\native\oboe\CMakeLists.txt">
       <Filter>JUCE Modules\juce_audio_devices\native\oboe</Filter>
     </None>

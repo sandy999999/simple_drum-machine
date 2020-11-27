@@ -12,6 +12,13 @@
       <FILE id="hOqrBQ" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
       <FILE id="hYsdnn" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <GROUP id="{6D3BED78-6232-5807-63AC-BBF833CAA21F}" name="DrumMachineSounds">
+        <FILE id="gbxjRi" name="conga.wav" compile="0" resource="1" file="../../../../../../Desktop/DrumMachineSounds/conga.wav"/>
+        <FILE id="NSy7uQ" name="hihat.wav" compile="0" resource="1" file="../../../../../../Desktop/DrumMachineSounds/hihat.wav"/>
+        <FILE id="GLXWXx" name="kick.wav" compile="0" resource="1" file="../../../../../../Desktop/DrumMachineSounds/kick.wav"/>
+        <FILE id="CdLOaF" name="snare.wav" compile="0" resource="1" file="../../../../../../Desktop/DrumMachineSounds/snare.wav"/>
+        <FILE id="b0nO3P" name="tom.wav" compile="0" resource="1" file="../../../../../../Desktop/DrumMachineSounds/tom.wav"/>
+      </GROUP>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>

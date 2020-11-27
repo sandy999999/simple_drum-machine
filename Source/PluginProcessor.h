@@ -54,7 +54,7 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
     void samplerSetup();
-    void addSamplerSound(String instrument);
+    void addSamplerSound(String instrument, const void* data, size_t sizeBytes);
     void loadSample();
     void parameterChanged(const String& parameterID, float newValue) override;
 

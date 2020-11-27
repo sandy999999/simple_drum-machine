@@ -2014,6 +2014,7 @@
     <ClCompile Include="..\..\..\..\..\..\..\..\..\..\Program Files\JUCE_old\modules\juce_gui_extra\juce_gui_extra.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_basics.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_devices.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_formats.cpp"/>
@@ -2762,10 +2763,16 @@
     <ClInclude Include="..\..\..\..\..\..\..\..\..\..\Program Files\JUCE_old\modules\juce_gui_extra\misc\juce_WebBrowserComponent.h"/>
     <ClInclude Include="..\..\..\..\..\..\..\..\..\..\Program Files\JUCE_old\modules\juce_gui_extra\native\juce_mac_CarbonViewWrapperComponent.h"/>
     <ClInclude Include="..\..\..\..\..\..\..\..\..\..\Program Files\JUCE_old\modules\juce_gui_extra\juce_gui_extra.h"/>
+    <ClInclude Include="..\..\JuceLibraryCode\BinaryData.h"/>
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h"/>
     <ClInclude Include="..\..\JuceLibraryCode\JucePluginDefines.h"/>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\..\..\..\..\Desktop\DrumMachineSounds\conga.wav"/>
+    <None Include="..\..\..\..\..\..\..\..\Desktop\DrumMachineSounds\hihat.wav"/>
+    <None Include="..\..\..\..\..\..\..\..\Desktop\DrumMachineSounds\kick.wav"/>
+    <None Include="..\..\..\..\..\..\..\..\Desktop\DrumMachineSounds\snare.wav"/>
+    <None Include="..\..\..\..\..\..\..\..\Desktop\DrumMachineSounds\tom.wav"/>
     <None Include="..\..\..\..\..\..\..\..\..\..\Program Files\JUCE_old\modules\juce_audio_devices\native\oboe\CMakeLists.txt"/>
     <None Include="..\..\..\..\..\..\..\..\..\..\Program Files\JUCE_old\modules\juce_audio_devices\native\oboe\readme.md"/>
     <None Include="..\..\..\..\..\..\..\..\..\..\Program Files\JUCE_old\modules\juce_audio_formats\codecs\flac\Flac Licence.txt"/>
